@@ -62,7 +62,6 @@ public class EnemyPatrol : MonoBehaviour
         idleTimer = 0;
         anim.SetBool("moving", true);
 
-
         enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction,
             initScale.y, initScale.z);
 
