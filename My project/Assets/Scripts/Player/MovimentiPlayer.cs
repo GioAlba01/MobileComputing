@@ -12,10 +12,11 @@ public class MovimentiPlayer : MonoBehaviour
     private float wallJumpCooldown;
     private float horizontalInput;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip jumpSound;
 
     private void Awake()
     {
-        //References per rigidbody e animator dall'object
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -25,19 +26,15 @@ public class MovimentiPlayer : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
 
-        // Cambio del player quando si muove a destra o sinistra
         if (horizontalInput > 0.01f)
             transform.localScale = Vector3.one;
 
         else if (horizontalInput < -0.01f)
                transform.localScale = new Vector3(-1, 1, 1);
 
-
-        //Set parametri animator
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded() );
 
-        // Wall jump logic
         if (wallJumpCooldown < 0.2f)
         {
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
@@ -52,7 +49,13 @@ public class MovimentiPlayer : MonoBehaviour
                 body.gravityScale = 7;
 
             if (Input.GetKey(KeyCode.Space))
+            {
                 Jump();
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                    SoundManager.instance.PlaySound(jumpSound);
+
+            }
         }
         else
             wallJumpCooldown += Time.deltaTime;

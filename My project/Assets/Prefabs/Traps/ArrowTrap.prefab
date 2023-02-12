@@ -64,7 +64,7 @@ Transform:
   - {fileID: 5500401528428083192}
   - {fileID: 5500401528605983132}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5500401528550138331
 MonoBehaviour:
@@ -91,6 +91,7 @@ MonoBehaviour:
   - {fileID: 2969089039803332380}
   - {fileID: 2969089038954852770}
   - {fileID: 2969089040971666477}
+  arrowSound: {fileID: 8300000, guid: 2f11e89bdff1cba4ea54f221aaf7205c, type: 3}
 --- !u!1 &5500401528605983133
 GameObject:
   m_ObjectHideFlags: 0

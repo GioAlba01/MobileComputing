@@ -5,6 +5,8 @@ public class Attacco : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] fireballs;
+    [SerializeField] private AudioClip fireballSound;
+
     private Animator anim;
     private MovimentiPlayer playerMovement;
     private float cooldownTimer = Mathf.Infinity;
@@ -26,6 +28,7 @@ public class Attacco : MonoBehaviour
 
     private void Attack()
     {
+        SoundManager.instance.PlaySound(fireballSound);
         anim.SetTrigger("attack");
         cooldownTimer = 0;
 
