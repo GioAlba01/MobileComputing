@@ -59,6 +59,7 @@ public class MenuManager : MonoBehaviour
         else if (currentPosition == 2)
         {
             //Open Credits
+            SceneManager.LoadScene(PlayerPrefs.GetInt("Credits", 4));
         }
         else if (currentPosition == 3)
             Application.Quit();
