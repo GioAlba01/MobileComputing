@@ -30,6 +30,9 @@ public class MovimentiPlayer : MonoBehaviour
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
     private float horizontalInput;
+    private float verticalInput;
+
+    public Joystick joystick;
 
     private void Awake()
     {
@@ -40,7 +43,8 @@ public class MovimentiPlayer : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = joystick.Horizontal;
+        verticalInput = joystick.Vertical;
 
         if (horizontalInput > 0.01f)
             transform.localScale = Vector3.one;
@@ -51,10 +55,10 @@ public class MovimentiPlayer : MonoBehaviour
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded() );
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (verticalInput >= .5f)
             Jump();
 
-        if (Input.GetKeyUp(KeyCode.Space) && body.velocity.y > 0)
+        if (verticalInput >= .5f && body.velocity.y > 0)
             body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
 
         if (onWall())
@@ -64,7 +68,7 @@ public class MovimentiPlayer : MonoBehaviour
         }
         else
         {
-            body.gravityScale = 7;
+            body.gravityScale = 3;
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
             if (isGrounded())
