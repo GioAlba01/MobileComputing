@@ -246,6 +246,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   jumpSound: {fileID: 8300000, guid: eb4577026f7755b41923c41e6e740dec, type: 3}
+  joystick: {fileID: 0}
 --- !u!95 &8644955875619444822
 Animator:
   serializedVersion: 5

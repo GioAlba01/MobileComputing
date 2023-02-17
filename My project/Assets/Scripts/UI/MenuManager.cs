@@ -3,69 +3,50 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private RectTransform arrow;
-    [SerializeField] private RectTransform[] buttons;
-    [SerializeField] private AudioClip changeSound;
-    [SerializeField] private AudioClip interactSound;
-    private int currentPosition;
+    [Header("Game Over")]
+    [SerializeField] private GameObject menuScreen;
+    [SerializeField] private AudioClip menuSound;
 
     private void Awake()
     {
-        ChangePosition(0);
+        menuScreen.SetActive(true);
     }
-    private void Update()
+
+    #region Menu
+
+    public void Menu()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            ChangePosition(-1);
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-            ChangePosition(1);
-
-        if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetButtonDown("Submit"))
-            Interact();
+        menuScreen.SetActive(true);
+        SoundManager.instance.PlaySound(menuSound);
     }
 
-    public void ChangePosition(int _change)
+    public void Play()
     {
-        currentPosition += _change;
-
-        if (_change != 0)
-            SoundManager.instance.PlaySound(changeSound);
-
-        if (currentPosition < 0)
-            currentPosition = buttons.Length - 1;
-        else if (currentPosition > buttons.Length - 1)
-            currentPosition = 0;
-
-        AssignPosition();
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level1", 1));
     }
-    private void AssignPosition()
+
+    public void Settings()
     {
-        arrow.position = new Vector3(arrow.position.x, buttons[currentPosition].position.y);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Settings", 3));
     }
-    public void Interact()
-    {
-        SoundManager.instance.PlaySound(interactSound);
 
-        if (currentPosition == 0)
-        {
-            //Start game
-            SceneManager.LoadScene(PlayerPrefs.GetInt("Level1", 1));
-        }
-        else if (currentPosition == 1)
-        {
-            //Open Settings
-            SceneManager.LoadScene(PlayerPrefs.GetInt("Settings", 3));
-        }
-        else if (currentPosition == 2)
-        {
-            //Open Credits
-            SceneManager.LoadScene(PlayerPrefs.GetInt("Credits", 4));
-        }
-        else if (currentPosition == 3)
-            Application.Quit();
+    public void Credits()
+    {
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level1", 4));
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; //Exits play mode (will only be executed in the editor)
+#endif
+    }
+    #endregion
 
     #region Settings
+
     public void SoundVolume()
     {
         SoundManager.instance.ChangeSoundVolume(0.2f);
@@ -74,7 +55,8 @@ public class MenuManager : MonoBehaviour
     {
         SoundManager.instance.ChangeMusicVolume(0.2f);
     }
-    public void BackMenu()
+
+    public void Back()
     {
         SceneManager.LoadScene(PlayerPrefs.GetInt("_MainMenu", 0));
     }

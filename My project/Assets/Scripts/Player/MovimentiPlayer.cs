@@ -30,7 +30,6 @@ public class MovimentiPlayer : MonoBehaviour
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
     private float horizontalInput;
-    private float verticalInput;
 
     public Joystick joystick;
 
@@ -44,7 +43,6 @@ public class MovimentiPlayer : MonoBehaviour
     private void Update()
     {
         horizontalInput = joystick.Horizontal;
-        verticalInput = joystick.Vertical;
 
         if (horizontalInput > 0.01f)
             transform.localScale = Vector3.one;
@@ -55,10 +53,10 @@ public class MovimentiPlayer : MonoBehaviour
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded() );
 
-        if (verticalInput >= .5f)
+        if (Input.GetKeyDown(KeyCode.Space))
             Jump();
 
-        if (verticalInput >= .5f && body.velocity.y > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && body.velocity.y > 0)
             body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2);
 
         if (onWall())
@@ -68,7 +66,7 @@ public class MovimentiPlayer : MonoBehaviour
         }
         else
         {
-            body.gravityScale = 3;
+            body.gravityScale = 7;
             body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 
             if (isGrounded())
@@ -81,7 +79,7 @@ public class MovimentiPlayer : MonoBehaviour
         }
     }
 
-    private void Jump()
+    public void Jump()
     {
         if (coyoteCounter <= 0 && !onWall() && jumpCounter <= 0) return;
 
