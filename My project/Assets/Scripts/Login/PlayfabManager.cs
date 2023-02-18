@@ -13,6 +13,12 @@ public class PlayfabManager : MonoBehaviour
 
     public void RegisterButton()
     {
+        if (passwordInput.text.Length < 6)
+        {
+            messageText.text = "Password too short!";
+            return;
+        }
+
         var request = new RegisterPlayFabUserRequest
         {
             Email = emailInput.text,
@@ -59,7 +65,7 @@ public class PlayfabManager : MonoBehaviour
 
     void OnError(PlayFabError error)
     {
-        Debug.Log("Error while logging in/creating account!");
+        messageText.text = error.ErrorMessage;
         Debug.Log(error.GenerateErrorReport());
     }
 
