@@ -7,7 +7,6 @@ public class Room : MonoBehaviour
 
     private void Awake()
     {
-        //Save the initial positions of the enemies
         initialPosition = new Vector3[enemies.Length];
         for (int i = 0; i < enemies.Length; i++)
         {

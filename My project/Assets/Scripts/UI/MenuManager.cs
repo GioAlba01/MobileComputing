@@ -22,17 +22,17 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level1", 1));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level1", 2));
     }
 
     public void Settings()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Settings", 3));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Settings", 4));
     }
 
     public void Credits()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level1", 4));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Credits", 5));
     }
 
     public void Quit()
@@ -58,7 +58,7 @@ public class MenuManager : MonoBehaviour
 
     public void Back()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("_MainMenu", 0));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("_MainMenu", 1));
     }
     #endregion
 }

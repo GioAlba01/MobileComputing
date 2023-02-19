@@ -20,7 +20,7 @@ public class LoadingManager : MonoBehaviour
 
     public void LoadCurrentLevel()
     {
-        int currentLevel = PlayerPrefs.GetInt("currentLevel", 1);
+        int currentLevel = PlayerPrefs.GetInt("currentLevel", 2);
         SceneManager.LoadScene(currentLevel);
     }
     public void Restart()
