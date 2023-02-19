@@ -35,12 +35,33 @@ public class PlayfabManager : MonoBehaviour
 
     public void LoginButton()
     {
+        var request = new LoginWithEmailAddressRequest
+        {
+            Email = emailInput.text,
+            Password = passwordInput.text,
+        };
+        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
+    }
 
+    void OnLoginSuccess(LoginResult result)
+    {
+        messageText.text = "Logged in!";
+        Debug.Log("Successful login/account create!");
     }
 
     public void ResetPasswordButton()
     {
+        var request = new SendAccountRecoveryEmailRequest
+        {
+            Email = emailInput.text,
+            TitleId = "B62CD"
+        };
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnError);
+    }
 
+    void OnPasswordReset(SendAccountRecoveryEmailResult result)
+    {
+        messageText.text = "Password reset mail sent!";
     }
 
     void Start()
