@@ -26,7 +26,7 @@ public class Attacco : MonoBehaviour
         cooldownTimer += Time.deltaTime;
     }
 
-    private void Attack()
+    public void Attack()
     {
         SoundManager.instance.PlaySound(fireballSound);
         anim.SetTrigger("attack");

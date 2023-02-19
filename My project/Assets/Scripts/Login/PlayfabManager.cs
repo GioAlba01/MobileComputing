@@ -3,6 +3,7 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayfabManager : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class PlayfabManager : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         messageText.text = "Registered and logged in!";
+        SceneManager.LoadScene(PlayerPrefs.GetInt("_MainMenu", 1));
     }
 
     public void LoginButton()
@@ -47,6 +49,7 @@ public class PlayfabManager : MonoBehaviour
     {
         messageText.text = "Logged in!";
         Debug.Log("Successful login/account create!");
+        SceneManager.LoadScene(PlayerPrefs.GetInt("_MainMenu", 1));
     }
 
     public void ResetPasswordButton()

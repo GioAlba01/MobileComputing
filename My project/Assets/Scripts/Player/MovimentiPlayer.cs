@@ -85,34 +85,29 @@ public class MovimentiPlayer : MonoBehaviour
 
         SoundManager.instance.PlaySound(jumpSound);
 
-        if (onWall())
-            WallJump();
+        if (isGrounded())
+            body.velocity = new Vector2(body.velocity.x, jumpPower);
         else
         {
-            if (isGrounded())
+           if (coyoteCounter > 0)
                 body.velocity = new Vector2(body.velocity.x, jumpPower);
-            else
-            {
-                if (coyoteCounter > 0)
-                    body.velocity = new Vector2(body.velocity.x, jumpPower);
-                else
+           else
+           {
+                if (jumpCounter > 0)
                 {
-                    if (jumpCounter > 0)
-                    {
-                        body.velocity = new Vector2(body.velocity.x, jumpPower);
-                        jumpCounter--;
-                    }
+                    body.velocity = new Vector2(body.velocity.x, jumpPower);
+                    jumpCounter--;
                 }
-            }
-            coyoteCounter = 0;
+           }
         }
+        coyoteCounter = 0;
     }
 
-    private void WallJump()
-    {
-        body.AddForce(new Vector2(-Mathf.Sign(transform.localScale.x) * wallJumpX, wallJumpY));
-        wallJumpCooldown = 0;
-    }
+    //private void WallJump()
+    //{
+        //body.AddForce(new Vector2(-Mathf.Sign(transform.localScale.x) * wallJumpX, wallJumpY));
+        //wallJumpCooldown = 0;
+    //}
 
 
     private bool isGrounded()
