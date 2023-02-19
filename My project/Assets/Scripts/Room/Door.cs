@@ -28,6 +28,12 @@ public class Door : MonoBehaviour
                 nextRoom.GetComponent<Room>().ActivateRoom(false);
             }
         }
-
+        else
+        {
+            if (collision.transform.position.x < transform.position.x)
+                nextRoom.GetComponent<Room>().ActivateRoom(true);
+            else
+                nextRoom.GetComponent<Room>().ActivateRoom(false);
+        }
     }
 }
