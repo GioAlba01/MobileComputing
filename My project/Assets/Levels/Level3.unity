@@ -9967,13 +9967,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saw
       objectReference: {fileID: 0}
+    - target: {fileID: 6708561494080213067, guid: f91f06ed65106d842b536d6439d89069, type: 3}
+      propertyPath: movementDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6708561494080213071, guid: f91f06ed65106d842b536d6439d89069, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6708561494080213071, guid: f91f06ed65106d842b536d6439d89069, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.3
+      value: 6.13
       objectReference: {fileID: 0}
     - target: {fileID: 6708561494080213071, guid: f91f06ed65106d842b536d6439d89069, type: 3}
       propertyPath: m_LocalPosition.y
